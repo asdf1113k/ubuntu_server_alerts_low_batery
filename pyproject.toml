@@ -1,0 +1,9 @@
+[project]
+name = "gps-weather"
+version = "0.1.0"
+description = "прога показывающая погоду🌩️ по текущему месту положению(начал разработку в образовательных целях🎯, в том смысле🧠, чтоб научиться пользоваться API🌐)"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "requests>=2.32.5",
+]
