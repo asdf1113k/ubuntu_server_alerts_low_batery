@@ -1,0 +1,9 @@
+#!/bin/bash  
+git add $@
+git status
+echo ведите коммит:
+read commit
+git commit -m "$commit"
+read select
+if select == "y":
+    echo it work
