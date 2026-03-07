@@ -1,19 +1,12 @@
+from weather_great import weather_great
+
 from weather_api_service import json_openweather
 from coordinates import json_ipinfo
-from colorama import init, Fore
+
+from colorama import init
 
 init(autoreset=True)
 if __name__ == "__main__":
-
-
-    print(Fore.CYAN + r'''          
-                                     /$$     /$$                          
-                                    | $$    | $$                          
- /$$  /$$  /$$  /$$$$$$   /$$$$$$  /$$$$$$  | $$$$$$$   /$$$$$$   /$$$$$$ 
-| $$ | $$ | $$ /$$__  $$ |____  $$|_  $$_/  | $$__  $$ /$$__  $$ /$$__  $$
-| $$ | $$ | $$| $$$$$$$$  /$$$$$$$  | $$    | $$  \ $$| $$$$$$$$| $$  \__/
-| $$ | $$ | $$| $$_____/ /$$__  $$  | $$ /$$| $$  | $$| $$_____/| $$      
-|  $$$$$/$$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/| $$  | $$|  $$$$$$$| $$      
- \_____/\___/  \_______/ \_______/   \___/  |__/  |__/ \_______/|__/      
-''')
-    
+    weather_great()
+    print(json_ipinfo)
+    print(json_openweather)
