@@ -17,4 +17,4 @@
 ...
 
 ### визуализация кода
-<img src="image.png" alt="мини визуализированный код" class="zoomable-image" width="300">
+<img src="image.png" alt="мини визуализированный код" class="zoomable-image" width="1200">
