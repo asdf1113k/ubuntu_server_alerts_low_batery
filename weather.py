@@ -5,18 +5,35 @@ from coordinates import json_ipinfo
 
 from colorama import init, Fore
 
+def filter_color(obj: int | float | str):
+        if obj in ['переменная облачность', 'облачно']:
+             return Fore.WHITE + obj
+        elif obj <= 10:
+             return Fore.CYAN
+        elif obj <= 0:
+             return Fore.BLUE + obj
+        else:
+             return obj
+            
+
 class weather:
     def __init__(self, json_ipinfo, json_api_weather):
         self.region = json_ipinfo['region']
-        self.city = json_ipinfo['city']
+        self.city = json_api_weather['name']
         self.temp = json_api_weather['main']['temp']
+        self.temp_feels_like = json_api_weather['main']['feels_like']
         self.weather_description = json_api_weather['weather'][0]['description']
-        
+        self.wind_speed = json_api_weather['wind']['speed']
+
     def print_weather(self):
         print(Fore.GREEN + f'погода в {self.region}, {self.city}')
-        print(Fore.LIGHTBLUE_EX + f'{self.weather_description}'.center(25))
-        print(Fore.LIGHTYELLOW_EX + f'температура: {self.temp}'.center(25))
+        print(f'{filter_color(self.weather_description)}'.rjust(30))
+        print(f'температура: {filter_color(self.temp)}°C'.rjust(25), end=' ')
+        print(f'чуствуеться как: {filter_color(self.temp_feels_like)}', end='\n')
+        print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
+
+    
 init(autoreset=True)
 if __name__ == "__main__":
     weather_great()
