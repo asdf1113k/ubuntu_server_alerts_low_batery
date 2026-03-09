@@ -1,7 +1,7 @@
 from colorama import init, Fore
 
 init(autoreset=True)
-def weather_great():
+def weather_great_greet():
     print(Fore.CYAN + r'''          
                                      /$$     /$$                          
                                     | $$    | $$                          
@@ -36,7 +36,7 @@ Fore.LIGHTRED_EX
 
 ]
 
-def weather_great_colored():
+def weather_great_greet_russia():
     index = 0
     for index in range(len(list_text)):
         print(list_color[index] + list_text[index])
