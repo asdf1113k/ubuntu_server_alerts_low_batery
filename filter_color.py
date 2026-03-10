@@ -12,12 +12,12 @@ def filter_color(obj: str | int | float) -> str:
           case obj if obj < 0:
                return Fore.BLUE + str(obj)
           
-          case obj if obj > 10:
-               return Fore.YELLOW + str(obj)
-
           case obj if obj <= 10:
                return Fore.CYAN + str(obj)
           
+          case obj if obj > 10:
+               return Fore.YELLOW + str(obj)
+
           case _:
                return obj
      
