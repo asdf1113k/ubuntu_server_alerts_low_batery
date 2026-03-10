@@ -6,14 +6,17 @@ from coordinates import json_ipinfo
 from colorama import init, Fore
 
 def filter_color(obj: int | float | str):
-        if obj in ['переменная облачность', 'облачно']:
-             return Fore.WHITE + obj
-        elif obj <= 10:
-             return Fore.CYAN
-        elif obj <= 0:
-             return Fore.BLUE + obj
-        else:
-             return obj
+     if isinstance(obj, str):
+          if obj in ['переменная облачность', 'облачно']:
+                return Fore.WHITE + obj
+
+     if isinstance(obj, (int, float)):  
+          if obj <= 10:
+               return Fore.CYAN
+          elif obj <= 0:
+               return Fore.BLUE + obj
+          else:
+               return obj
             
 
 class weather:
@@ -29,7 +32,7 @@ class weather:
         print(Fore.GREEN + f'погода в {self.region}, {self.city}')
         print(f'{filter_color(self.weather_description)}'.rjust(30))
         print(f'температура: {filter_color(self.temp)}°C'.rjust(25), end=' ')
-        print(f'чуствуеться как: {filter_color(self.temp_feels_like)}', end='\n')
+        print(f'чуствуеться как: {filter_color(self.temp_feels_like)}°C', end='\n')
         print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
 
