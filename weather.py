@@ -5,7 +5,7 @@ from weather_api_service import json_openweathermap
 from coordinates import json_ipinfo
 
 from colorama import init, Fore
-
+init(autoreset=True)
 
             
 
@@ -27,10 +27,10 @@ class weather:
 
 
     
-init(autoreset=True)
+
 if __name__ == "__main__":
     weather_great_greet_russia()
-    # ip скрыт в weather_api_service
+    # ip скрыт в coordinates.py
     # print(json_ipinfo)
     # print(json_openweathermap)
     wt = weather(json_ipinfo, json_openweathermap)
