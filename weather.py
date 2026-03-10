@@ -7,14 +7,20 @@ from colorama import init, Fore
 
 def filter_color(obj: int | float | str):
      if isinstance(obj, str):
-          if obj in ['переменная облачность', 'облачно']:
+          if obj in ['ясно']:
+               return Fore.YELLOW + obj
+          elif obj in ['переменная облачность', 'облачно']:
                 return Fore.WHITE + obj
+          else:
+               return obj
 
      if isinstance(obj, (int, float)):  
-          if obj <= 10:
-               return Fore.CYAN
+          if obj > 10:
+               return Fore.YELLOW + str(obj)
+          elif obj <= 10:
+               return Fore.CYAN + str(obj)
           elif obj <= 0:
-               return Fore.BLUE + obj
+               return Fore.BLUE + str(obj)
           else:
                return obj
             
@@ -31,7 +37,7 @@ class weather:
     def print_weather(self):
         print(Fore.GREEN + f'погода в {self.region}, {self.city}')
         print(f'{filter_color(self.weather_description)}'.rjust(30))
-        print(f'температура: {filter_color(self.temp)}°C'.rjust(25), end=' ')
+        print(f'температура: {filter_color((self.temp))}°C'.rjust(25), end=' ')
         print(f'чуствуеться как: {filter_color(self.temp_feels_like)}°C', end='\n')
         print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
