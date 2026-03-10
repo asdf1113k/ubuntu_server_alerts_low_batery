@@ -9,7 +9,7 @@ init(autoreset=True)
 
             
 
-class weather:
+class Weather:
     def __init__(self, json_ipinfo, json_api_weather):
         self.region = json_ipinfo['region']
         self.city = json_api_weather['name']
@@ -33,5 +33,5 @@ if __name__ == "__main__":
     # ip скрыт в coordinates.py
     # print(json_ipinfo)
     # print(json_openweathermap)
-    wt = weather(json_ipinfo, json_openweathermap)
+    wt = Weather(json_ipinfo, json_openweathermap)
     wt.print_weather()
