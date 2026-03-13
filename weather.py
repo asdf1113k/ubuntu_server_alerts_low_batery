@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.10
 from weather_great import  weather_great_greet_russia
 from filter_color import filter_color
 
