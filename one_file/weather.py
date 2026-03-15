@@ -102,8 +102,6 @@ class Weather:
         print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
 
-    
-
 if __name__ == "__main__":
     weather_great_greet_russia()
     # ip скрыт в coordinates.py
