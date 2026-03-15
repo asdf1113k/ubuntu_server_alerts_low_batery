@@ -14,11 +14,12 @@
 
 
 # что требуеться для установки проги на windows8 и выше:
-1. установленый Python3.10 и выше
-2. pip(обычно установлен по умолчанию)
+1. установленый **Python3.10** и выше
+2. **pip**(обычно устанавливаеться с Python по умолчанию)
+3. установленый **git**
 
 # установка
-## linux c pip
+## linux
 ```bash
 git clone https://github.com/asdf1113k/gps_weather.git
 cd gps_weather
@@ -27,3 +28,11 @@ source .venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
+## windows
+```
+git clone https://github.com/asdf1113k/gps_weather.git
+cd gps_weather
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
