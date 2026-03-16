@@ -40,4 +40,6 @@ pip install -r requirements.txt
 # usage
 ```
 python weather.py
+or
+python3 weather.py
 ```
