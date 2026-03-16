@@ -1,6 +1,0 @@
-#!/bin/bash  
-git add $@
-git status
-echo ведите коммит:
-git commit 
-git push origin main
