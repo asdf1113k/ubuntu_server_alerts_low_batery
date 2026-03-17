@@ -6,7 +6,7 @@ def filter_color(obj: str | int | float) -> str:
           case 'ясно':
                return Fore.YELLOW + obj
 
-          case 'переменная облачность' | 'облачно' | 'небольшая облачность':
+          case 'переменная облачность' | 'облачно' | 'небольшая облачность' | 'облачно с прояснениями':
                return Fore.WHITE + obj
           
           case obj if obj < 0:
