@@ -6,7 +6,7 @@ def filter_color(obj: str | int | float) -> str:
           case 'ясно':
                return Fore.YELLOW + obj
 
-          case 'переменная облачность' | 'облачно' | 'небольшая облачность' | 'облачно с прояснениями':
+          case 'переменная облачность' | 'облачно' | 'небольшая облачность' | 'облачно с прояснениями' | 'пасмурно':
                return Fore.WHITE + obj
           
           case obj if obj < 0:
@@ -15,31 +15,14 @@ def filter_color(obj: str | int | float) -> str:
           case obj if obj <= 10:
                return Fore.CYAN + str(obj)
           
-          case obj if obj > 10:
+          case obj if obj <= 20:
                return Fore.YELLOW + str(obj)
+          
+          case obj if obj <= 30:
+               return Fore.RED
+               
+          case obj if obj <= 40:
+               return Fore.LIGHTRED_EX + str(obj)
 
           case _:
                return obj
-     
-
-def filter_color_old_version(obj: int | float | str) -> str:
-     """это версия функции больше не используеться, остаеться здесь как экспанат в музее
-     ну или если у когото в друг будет версия python>3.10"""
-     if isinstance(obj, str):
-          if obj in ['ясно']:
-               return Fore.YELLOW + obj
-          elif obj in ['переменная облачность', 'облачно']:
-                return Fore.WHITE + obj
-          else:
-               return obj
-
-     if isinstance(obj, (int, float)):  
-          if obj > 10:
-               return Fore.YELLOW + str(obj)
-          elif obj <= 10:
-               return Fore.CYAN + str(obj)
-          elif obj <= 0:
-               return Fore.BLUE + str(obj)
-          else:
-               return obj
-          
