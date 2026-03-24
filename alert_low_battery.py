@@ -18,4 +18,5 @@ while 1 == 1:
         sound_low_battery()
         time.sleep(2)
     else:
+        print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
         time.sleep(10)
