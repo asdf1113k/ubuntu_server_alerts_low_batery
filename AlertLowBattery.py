@@ -7,8 +7,6 @@ def sound_low_battery():
     subprocess.run(['say', '"low battery"'])
 
 
-
-
 while 1 == 1:
     # get battery charge and connected charging(запрос заряда батареи и подключена ли зарядка)
     result_capacity = subprocess.run(['cat', '/sys/class/power_supply/BAT1/capacity'], capture_output=True, text=True)
