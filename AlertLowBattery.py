@@ -4,7 +4,7 @@ import time
 
 
 name_dir_info_battery = subprocess.run(['ls', '/sys/class/power_supply/'], capture_output=True, text=True)
-name_dir_info_battery = name_dir_info_battery.stdout.split().sort()
+name_dir_info_battery = name_dir_info_battery.stdout.split(' ').sort()
 print(name_dir_info_battery)
 
 
