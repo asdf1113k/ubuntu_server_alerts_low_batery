@@ -21,6 +21,7 @@ try:
 
         if battery_charge <= 20 and 0 == connected_charging:
             sound_low_battery()
+            print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
             time.sleep(2)
         else:
             print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
