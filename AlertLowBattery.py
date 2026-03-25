@@ -9,7 +9,7 @@ name_dir_info_battery = name_dir_info_battery.stdout.split()
 
 
 def sound_low_battery():
-    subprocess.run(['say', '"low battery"'])
+    subprocess.run(['paplay', 'low-battery.mp3'])
 
 try:
     while 1 == 1:
