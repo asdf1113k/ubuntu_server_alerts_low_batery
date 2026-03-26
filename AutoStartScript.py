@@ -21,7 +21,7 @@ WantedBy=multi-user.target
 """
 )
 
-subprocess.run(["cp", 'AlertLowBattery.service', '/etc/systemd/system/AlertLowBattery.service',])
+subprocess.run(['sudo', 'cp', 'AlertLowBattery.service', '/etc/systemd/system/AlertLowBattery.service',])
 
 subprocess.run(['sudo', 'systemctl', 'daemon-reload',])
 subprocess.run(['sudo', 'systemctl', 'enable', 'AlertLowBattery.service',])
