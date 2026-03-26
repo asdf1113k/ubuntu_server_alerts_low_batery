@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import subprocess
 import time
-from AutoStartScript import pwd
 
 name_dir_info_battery = subprocess.run(['ls', '/sys/class/power_supply/'], capture_output=True, text=True)
 name_dir_info_battery = name_dir_info_battery.stdout.split()
@@ -9,7 +8,7 @@ name_dir_info_battery = name_dir_info_battery.stdout.split()
 
 
 def sound_low_battery():
-    subprocess.run(['paplay', f'{pwd[:-1]}/low-battery.mp3'])
+    subprocess.run(['paplay', '~/ubuntu_server_alerts_low_batery/low-battery.mp3'])
 
 try:
     while 1 == 1:
