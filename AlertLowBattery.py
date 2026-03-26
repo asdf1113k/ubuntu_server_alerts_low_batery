@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import subprocess
 import time
-
+from AutoStartScript import pwd
 
 name_dir_info_battery = subprocess.run(['ls', '/sys/class/power_supply/'], capture_output=True, text=True)
 name_dir_info_battery = name_dir_info_battery.stdout.split()
@@ -9,7 +9,7 @@ name_dir_info_battery = name_dir_info_battery.stdout.split()
 
 
 def sound_low_battery():
-    subprocess.run(['paplay', 'low-battery.mp3'])
+    subprocess.run(['paplay', f'{pwd[:-1]}/low-battery.mp3'])
 
 try:
     while 1 == 1:
@@ -20,11 +20,15 @@ try:
         connected_charging: int = int(result_online.stdout)
 
         if battery_charge <= 20 and 0 == connected_charging:
+            # print старый вариант вывода
+            # почему echo? -- потому что логируеться в systemctl
             sound_low_battery()
-            print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
+            # print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
+            subprocess.run(['echo', f'{battery_charge}% статус зарядного устройства: {connected_charging}',])           
             time.sleep(2)
         else:
-            print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
+            # print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
+            subprocess.run(['echo', f'{battery_charge}% статус зарядного устройства: {connected_charging}',])           
             time.sleep(4)
 except KeyboardInterrupt:
     pass
