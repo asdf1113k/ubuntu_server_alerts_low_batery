@@ -13,7 +13,7 @@ print(USER[:-1])
 
 # создание AlertLowBattery.service в /etc/systemd/system
 subprocess.run(['mkdir', '-p', f'/home/{USER[:-1]}/.config/systemd/user/',])
-with open('~/.config/systemd/user/AlertLowBattery.service', 'w') as file_service:
+with open('AlertLowBattery.service', 'w') as file_service:
     file_service.write(
 f"""
 [Unit]
@@ -30,7 +30,7 @@ WorkingDirectory={PATH_TO_FOLDER_WITH_SRCIPT}
 WantedBy=multi-user.target
 """
 )
-
+subprocess.run(['cp', 'AlertLowBattery.service', '~/.config/systemd/user/AlertLowBattery.service'])
     
 
 # перезагрузка демона и настройка авто запуска скрипта
