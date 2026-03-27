@@ -5,13 +5,13 @@ print('установка зависимостей...')
 subprocess.run(['sudo', 'apt', 'install', 'paplay',])
 
 
-# получение имени текущенго  пользователя и пути к директории
+# получение имени текущенго пользователя и пути к директории
 PATH_TO_SRCIPT = Path(__file__)
 PATH_TO_FOLDER_WITH_SRCIPT = PATH_TO_SRCIPT.parent
 USER = subprocess.run(['whoami'], capture_output=True, text=True)
 print(USER)
 
-# копирование AlertLowBattery.service в /etc/systemd/system
+# создание AlertLowBattery.service в /etc/systemd/system
 subprocess.run(['mkdir', '-p', '~/.config/systemd/user/',])
 with open('~/.config/systemd/user/AlertLowBattery.service', 'w') as file_service:
     file_service.write(
