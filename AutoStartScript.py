@@ -1,34 +1,40 @@
-import subprocess 
-# получение имени текущенго  пользователя и пути к директории
-pwd = subprocess.run(['pwd'], capture_output=True, text=True).stdout
-user = pwd.split('/')[2]
-print(user)
+import subprocess
+from pathlib import Path
 
 print('установка зависимостей...')
 subprocess.run(['sudo', 'apt', 'install', 'paplay',])
 
-with open('AlertLowBattery.service', 'w') as file_service:
+
+# получение имени текущенго  пользователя и пути к директории
+PATH_TO_SRCIPT = Path(__file__)
+PATH_TO_FOLDER_WITH_SRCIPT = PATH_TO_SRCIPT.parent
+USER = subprocess.run(['whoami'], capture_output=True, text=True)
+print(USER)
+
+# копирование AlertLowBattery.service в /etc/systemd/system
+subprocess.run(['mkdir', '-p', '~/.config/systemd/user/',])
+with open('~/.config/systemd/user/AlertLowBattery.service', 'w') as file_service:
     file_service.write(
 f"""
 [Unit]
 Description=AlertLowBattery
+After=sound.target pipewire.service pipewire-pulse.service wireplumber.service
 
 [Service]
-ExecStart=/usr/bin/python3 {pwd[:-1]}/AlertLowBattery.py
+ExecStart=/usr/bin/python3 {PATH_TO_SRCIPT}
 Type=simple
-User={user}
-WorkingDirectory={pwd}
+User={USER}
+WorkingDirectory={PATH_TO_FOLDER_WITH_SRCIPT}
 
 [Install]
 WantedBy=multi-user.target
 """
 )
-# копирование AlertLowBattery.service в /etc/systemd/system
-subprocess.run(['sudo', 'cp', 'AlertLowBattery.service', '/etc/systemd/system/AlertLowBattery.service',])
+
+    
+
 # перезагрузка демона и настройка авто запуска скрипта
-subprocess.run(['sudo', 'systemctl', 'daemon-reload',])
-subprocess.run(['sudo', 'systemctl', 'enable', 'AlertLowBattery.service',])
-subprocess.run(['sudo', 'systemctl', 'start', 'AlertLowBattery.service',])
-subprocess.run(['sudo', 'systemctl', 'status', 'AlertLowBattery.service',])
-
-
+subprocess.run(['sudo', 'systemctl', '--user', 'daemon-reload',])
+subprocess.run(['sudo', 'systemctl', '--user', 'enable', 'AlertLowBattery.service',])
+subprocess.run(['sudo', 'systemctl', '--user', 'start', 'AlertLowBattery.service',])
+subprocess.run(['sudo', 'systemctl', '--user', 'status', 'AlertLowBattery.service',])
