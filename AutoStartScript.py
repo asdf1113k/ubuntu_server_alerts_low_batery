@@ -12,7 +12,7 @@ USER = subprocess.run(['whoami'], capture_output=True, text=True).stdout
 print(USER[:-1])
 
 # создание AlertLowBattery.service в /etc/systemd/system
-subprocess.run(['mkdir', '-p', f'/home/{USER[:-1]}/.config/systemd/user/',])
+subprocess.run(['mkdir', '-p', f'/home/{USER[:-1]}/.config/systemd/user/system',])
 with open('AlertLowBattery.service', 'w') as file_service:
     file_service.write(
 f"""
