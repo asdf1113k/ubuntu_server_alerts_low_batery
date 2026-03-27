@@ -34,7 +34,7 @@ WantedBy=multi-user.target
     
 
 # перезагрузка демона и настройка авто запуска скрипта
-subprocess.run(['sudo', 'systemctl', '--user', 'daemon-reload',])
-subprocess.run(['sudo', 'systemctl', '--user', 'enable', 'AlertLowBattery.service',])
-subprocess.run(['sudo', 'systemctl', '--user', 'start', 'AlertLowBattery.service',])
-subprocess.run(['sudo', 'systemctl', '--user', 'status', 'AlertLowBattery.service',])
+subprocess.run(['systemctl', '--user', 'daemon-reload',])
+subprocess.run(['systemctl', '--user', 'enable', 'AlertLowBattery.service',])
+subprocess.run(['systemctl', '--user', 'start', 'AlertLowBattery.service',])
+subprocess.run(['systemctl', '--user', 'status', 'AlertLowBattery.service',])
