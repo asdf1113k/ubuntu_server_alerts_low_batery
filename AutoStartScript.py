@@ -17,7 +17,7 @@ print(USERNAME)
 # создание AlertLowBattery.service в ~/.config/systemd/user
 os.system(f'cd {PATH_TO_FOLDER_WITH_SRCIPT}')
 os.system(f'mkdir -p /home/{USERNAME}/.config/systemd/user/')
-os.system('sudo chown {USERNAME}:{USERNAME} /home/{USERNAME}/.config/systemd/user') # ДАЮ ПРАВА ПОЛЬЗОВАТЕЛЮ
+os.system(f'sudo chown {USERNAME}:{USERNAME} /home/{USERNAME}/.config/systemd/user') # ДАЮ ПРАВА ПОЛЬЗОВАТЕЛЮ
 with open('AlertLowBattery.service', 'w') as file_service:
     file_service.write(
 f"""
