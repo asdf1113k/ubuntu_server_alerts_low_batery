@@ -25,7 +25,7 @@ try:
             sound_low_battery()
             # print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
             subprocess.run(['echo', f'{battery_charge}% статус зарядного устройства: {connected_charging}',])           
-            time.sleep(2)
+            time.sleep(4)
         else:
             # print(f'{battery_charge}% статус зарядного устройства: {connected_charging}')
             subprocess.run(['echo', f'{battery_charge}% статус зарядного устройства: {connected_charging}',])           
