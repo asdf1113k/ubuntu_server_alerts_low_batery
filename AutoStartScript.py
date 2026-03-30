@@ -27,6 +27,7 @@ if __name__ == "__main__":
 Description=AlertLowBattery
 After=pipewire.service pipewire-pulse.service wireplumber.service
 Wants=pipewire.service pipewire-pulse.service wireplumber.service
+After=network.target
 
 [Service]
 Type=simple
