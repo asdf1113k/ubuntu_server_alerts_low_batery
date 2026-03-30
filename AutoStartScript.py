@@ -26,7 +26,7 @@ Description=AlertLowBattery
 After=sound.target pipewire.service pipewire-pulse.service wireplumber.service
 
 [Service]
-ExecStart=/usr/bin/python3 {PATH_TO_SRCIPT}
+ExecStart=/usr/bin/python3 {path_to_script}
 Type=simple
 user={USERNAME}
 WorkingDirectory={PATH_TO_FOLDER_WITH_SRCIPT}
@@ -48,4 +48,4 @@ os.system('systemctl --user enable AlertLowBattery.service')
 os.system('systemctl --user start AlertLowBattery.service')
 os.system('systemctl --user status AlertLowBattery.service')
 
-print(f"путь до скрипта {PATH_TO_SRCIPT}")
+print(f"путь до скрипта {path_to_script}")
