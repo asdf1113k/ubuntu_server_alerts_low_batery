@@ -1,18 +1,23 @@
-import subprocess
 from pathlib import Path
-
+import os
+import getpass
 print('установка зависимостей...')
-subprocess.run(['sudo', 'apt', 'install', 'paplay',])
+os.system('sudo apt install paplay')
 
 
 # получение имени текущенго пользователя и пути к директории
-PATH_TO_SRCIPT = Path(__file__)
-PATH_TO_FOLDER_WITH_SRCIPT = PATH_TO_SRCIPT.parent
-USER = subprocess.run(['whoami'], capture_output=True, text=True).stdout
-print(USER[:-1])
+path_to_script = Path(__file__)
+path_to_script = path_to_script.parent
+PATH_TO_FOLDER_WITH_SRCIPT = path_to_script
+path_to_script = path_to_script / 'AlertLowBattery.py'
 
-# создание AlertLowBattery.service в /etc/systemd/system
-subprocess.run(['mkdir', '-p', f'/home/{USER[:-1]}/.config/systemd/user/system',])
+USERNAME = getpass.getuser()
+print(USERNAME)
+
+# создание AlertLowBattery.service в ~/.config/systemd/user
+os.system(f'cd {PATH_TO_FOLDER_WITH_SRCIPT}')
+os.system(f'mkdir -p /home/{USERNAME}/.config/systemd/user/')
+os.system('sudo chown {USERNAME}:{USERNAME} /home/{USERNAME}/.config/systemd/user') # ДАЮ ПРАВА ПОЛЬЗОВАТЕЛЮ
 with open('AlertLowBattery.service', 'w') as file_service:
     file_service.write(
 f"""
@@ -23,18 +28,24 @@ After=sound.target pipewire.service pipewire-pulse.service wireplumber.service
 [Service]
 ExecStart=/usr/bin/python3 {PATH_TO_SRCIPT}
 Type=simple
-User={USER[:-1]}
+user={USERNAME}
 WorkingDirectory={PATH_TO_FOLDER_WITH_SRCIPT}
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
 """
 )
-subprocess.run(['cp', 'AlertLowBattery.service', '~/.config/systemd/user/AlertLowBattery.service'])
+    file_service.close()
+# копирование AlertLowBattery.service в ~/.config/systemd/USERNAME/
+os.system(f'cp -v /{PATH_TO_FOLDER_WITH_SRCIPT / 'AlertLowBattery.service'} /home/{USERNAME}/.config/systemd/user/'   )
     
 
 # перезагрузка демона и настройка авто запуска скрипта
-subprocess.run(['systemctl', '--user', 'daemon-reload',])
-subprocess.run(['systemctl', '--user', 'enable', 'AlertLowBattery.service',])
-subprocess.run(['systemctl', '--user', 'start', 'AlertLowBattery.service',])
-subprocess.run(['systemctl', '--user', 'status', 'AlertLowBattery.service',])
+os.system('systemctl --user daemon-reload')
+os.system('systemctl --user enable AlertLowBattery.service')
+os.system('systemctl --user start AlertLowBattery.service')
+os.system('systemctl --user status AlertLowBattery.service')
+
+print(f"путь до скрипта {PATH_TO_SRCIPT}")
