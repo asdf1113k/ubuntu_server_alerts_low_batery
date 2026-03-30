@@ -10,6 +10,7 @@ name_dir_info_battery = name_dir_info_battery.stdout.split()
 
 def sound_low_battery():
     subprocess.run(['paplay', f'/{PATH_TO_FOLDER_WITH_SRCIPT/'low-battery.mp3'}'])
+    subprocess.run(['beep', '-f', '800', '-l', '200'])
 
 try:
     while 1 == 1:

@@ -13,7 +13,8 @@ print(USERNAME)
 
 if __name__ == "__main__":
     print('установка зависимостей...')
-    os.system('sudo apt install paplay')
+    os.system('sudo apt install pulseaudio-utils')
+    os.system('sudo apt install beep')
 
     # создание AlertLowBattery.service в ~/.config/systemd/user
     os.system(f'cd {PATH_TO_FOLDER_WITH_SRCIPT}')
@@ -22,22 +23,22 @@ if __name__ == "__main__":
     with open('AlertLowBattery.service', 'w') as file_service:
         file_service.write(
     f"""
-    [Unit]
-    Description=AlertLowBattery
-    After=sound.target pipewire.service pipewire-pulse.service wireplumber.service
+[Unit]
+Description=AlertLowBattery
+After=pipewire.service pipewire-pulse.service wireplumber.service
+Wants=pipewire.service pipewire-pulse.service wireplumber.service
 
-    [Service]
-    ExecStart=/usr/bin/python3 {path_to_script}
-    Type=simple
-    user={USERNAME}
-    WorkingDirectory={PATH_TO_FOLDER_WITH_SRCIPT}
-    Restart=always
-    RestartSec=5
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 {path_to_script}
+WorkingDirectory={PATH_TO_FOLDER_WITH_SRCIPT}
+Restart=always
+RestartSec=5s
 
-    [Install]
-    WantedBy=multi-user.target
-    """
-    )
+[Install]
+WantedBy=default.target
+"""
+)
         file_service.close()
     # копирование AlertLowBattery.service в ~/.config/systemd/USERNAME/
     os.system(f'cp -v /{PATH_TO_FOLDER_WITH_SRCIPT / 'AlertLowBattery.service'} /home/{USERNAME}/.config/systemd/user/'   )
@@ -45,7 +46,7 @@ if __name__ == "__main__":
 
     # перезагрузка демона и настройка авто запуска скрипта
     os.system('systemctl --user daemon-reload')
-    os.system('systemctl --user enable AlertLowBattery.service')
+    os.system('ssystemctl --user enable --now AlertLowBattery.service')
     os.system('systemctl --user start AlertLowBattery.service')
     os.system('systemctl --user status AlertLowBattery.service')
 
