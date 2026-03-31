@@ -6,7 +6,7 @@
 если 20 процентов заряда и зарядное устройство не подключено
 воспроизводиться звук оповещения о низком заряде "low battery"
 
-# install
+# install and run
 для работы скрипта требуеться:
 
 **python>=*3.10***
@@ -14,11 +14,11 @@
 **войти в систему как пользователь**
 
 команда для этого:
-```
+```sh
 sudo -iu $USER
 ```
 если не войти, то при обращении к systemctl --user произайдёт ошибка
-```
+```sh
 cd ~
 git clone https://github.com/asdf1113k/ubuntu_server_alerts_low_batery.git
 cd ubuntu_server_alerts_low_batery
@@ -27,12 +27,12 @@ python3 AutoStartScript.py
 ```
 
 # отслеживание работы скрипта
-```
+```sh
 journalctl -f
 ```
 покажет заряд и статус зарядного устройства
 
 пример:
-```
+```sh
 Mar 31 11:49:43 LAPTOP-2CDN6G4C python3[3358]: 100% статус зарядного устройства: 1 
 ```
