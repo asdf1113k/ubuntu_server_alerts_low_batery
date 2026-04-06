@@ -8,7 +8,7 @@ try:
     import winsdk.windows.devices.geolocation as wdg
 except ImportError:
     print("установите зависимости командой 'pip install -r requirements.txt' или 'uv sync'")
-
+    print("может быть такое что некоторые импорты не нужны, так что можно не беспокоиться")
 init(autoreset=True)
 #будет выполняться если не получилось получить доступ к точному местуположению
 def get_coordinates_ipinfo():
