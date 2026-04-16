@@ -7,6 +7,16 @@ from pathlib import Path
 import os
 import getpass
 
+class SystemError(Exception):
+    pass
+
+if os.name == 'posix':
+    pass
+elif os.name == "nt":
+    raise SystemError('it script not excpected is system')
+else:
+    raise SystemError('эта система не известна скрипту')
+
 path_to_script = Path(__file__)
 path_to_script = path_to_script.parent
 PATH_TO_FOLDER_WITH_SRCIPT = path_to_script # получение пути к директории
